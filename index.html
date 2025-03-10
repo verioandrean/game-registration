@@ -58,10 +58,11 @@
             formModal.style.display = "block";
         });
 
-        // Step 3: If 'No', close modal
+        // Step 3: If 'No', show a message
         noButton.addEventListener("click", function() {
             questionModal.style.display = "none";
             overlay.style.display = "none";
+            alert("If you change your mind, please scan the barcode again.");
         });
 
         // Step 4: Submit data to Google Sheets & redirect to PDF
@@ -70,7 +71,7 @@
             let age = document.getElementById("age").value;
 
             if (name && age) {
-                fetch("YOUR_GOOGLE_APPS_SCRIPT_URL", {
+                fetch("https://script.google.com/macros/s/AKfycbyiVo5yU9xCkw3xDUAj3_RZmIAVX2-U4supYmWmteUsZX21LQIboeagy4IoKjSy_R_Vqg/exec", { // Replace with your Google Apps Script URL
                     method: "POST",
                     body: JSON.stringify({ name: name, age: age }),
                     headers: { "Content-Type": "application/json" }
@@ -78,7 +79,7 @@
                 .then(response => response.text())
                 .then(data => {
                     alert("Registration successful! Redirecting to game guide...");
-                    window.location.href = "game_instructions.pdf"; // Replace with actual PDF path
+                    window.location.href = "https://docs.google.com/presentation/d/1FHBizKTuQ_05c8jgvWgF_jz2lQiLxxP8ZGdyTFyIiog/edit?usp=sharing"; // Updated link
                 })
                 .catch(error => console.error("Error:", error));
             } else {
