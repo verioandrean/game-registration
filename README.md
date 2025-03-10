@@ -1,1 +1,1 @@
-# game-registration2
+# game-registration
